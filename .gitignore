@@ -1,15 +1,16 @@
-# Python 編譯快取
+﻿# Python bytecode & cache
 __pycache__/
 *.py[cod]
-*$py.class
+*.class
 
-# C/C++ 編譯產物與執行檔 (GitHub 僅保存乾淨原始碼與建置腳本)
+# C/C++ 編譯產物與暫存檔
 *.obj
 *.pdb
 *.ilk
+build/
 *.exe
 
-# 信件專用壓縮包 (供 Email 附件使用，不重複推上 Git)
+# 郵件附件專用壓縮檔 (不推上 Git)
 *.zip
 
 # 瀏覽器暫存設定檔
