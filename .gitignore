@@ -1,4 +1,4 @@
-﻿# ==========================================
+# ==========================================
 # UC Capital Assessment - Git Ignore Configuration
 # ==========================================
 
@@ -26,7 +26,9 @@ ENV/
 *.so
 *.dylib
 *.exe
-build/
+Q1_Scheduling/build/
+Q2_MemoryAllocator/build/
+Q3_PatternAnalysis/build/
 bin/
 out/
 
@@ -42,6 +44,11 @@ out/
 *.zip
 *.tar.gz
 *.7z
+
+# 5. 個人私密面試備戰資料 (不推上 GitHub，僅供本地複習)
+*INTERVIEW_QA*
+docs_and_tools/INTERVIEW_QA_PREPARATION.md
+
 
 # 5. IDE 與編輯器設定檔
 .vscode/
