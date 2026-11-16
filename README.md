@@ -1,82 +1,75 @@
 # UC Capital（優式資本）面試前考題 — 軟體工程與 Human-AI Agent 協同研發專案總覽 (`README.md`)
 
-本倉庫為 **UC Capital 優式資本面試前考題** 之完整軟體工程實作專案。全專案嚴格遵循高頻／量化交易系統研發標準，採用 **「Python 3.12 領域建模（高可維護性）+ C11 (`MSVC x64 /O2`) 暫存器級原生極速引擎（奈秒級執行效率）」雙軌制架構**，並公開透明地展示 **Human-in-the-Loop AI Agent 協同工程模式（人類工程師主導架構決策與品質治理 + AI Agent 協同分析、開源調研與自動化驗證）** 之完整實踐。
+本倉庫為 **UC Capital 優式資本面試前考題** 之完整軟體工程實作專案。全專案嚴格遵循高頻／量化交易系統研發標準，採用 **「Python 3.12 領域建模（高可維護性）+ C11 (`MSVC x64 /O2`) 暫存器級原生極速引擎（奈秒級執行效率）」雙軌制架構**，並公開透明地展示 **Human-in-the-Loop AI Agent 協同工程模式** 與 **「The Chain of Truth（Strategy $\to$ Task $\to$ Worklog）」三層級管理框架** 之完整實踐。
 
 ---
 
 ## 一、核心交付報告（建議優先開啟）
 
 1. **[UCCapital_面試考題_最終說明報告.pdf](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/UCCapital_面試考題_最終說明報告.pdf)**（A4 共 14 頁，內嵌 **17 張高解析向量圖表**，完整涵蓋三題演算法設計、複雜度對照表、開源技術引進與即時實測數據）
-2. **[UCCapital_實作思考與軟體工程流程報告.pdf](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/UCCapital_實作思考與軟體工程流程報告.pdf)**（A4 共 6 頁，內嵌 **11 張視覺化流程圖與演進軌跡圖**，完整梳理本專案在 **Human-AI Agent 協同研發** 下，從拆解題目、開源調研、實證測試、語言效率質疑到跨語言最佳化的真實對話脈絡與決策順序）
+2. **[UCCapital_實作思考與軟體工程流程報告.pdf](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/UCCapital_實作思考與軟體工程流程報告.pdf)**（A4 共 5 頁，內嵌 **11 張視覺化流程圖與演進軌跡圖**，完整梳理本專案在 **Human-AI Agent 協同研發** 與 **The Chain of Truth 三層級治理** 下，從拆解題目、開源調研、實證測試、語言效率質疑到跨語言最佳化的真實對話脈絡與決策順序）
 
 ---
 
-## 二、Human-in-the-Loop AI Agent 協同工程方法論
+## 二、The Chain of Truth 三層級管理框架與 Human-AI Agent 協同治理
 
-呼應優式資本探索 **「如何應用 AI 的分析能力去輔助目前交易系統與工程化」** 之核心方向，本專案不將 AI 視為單純的程式碼生成器，而是實踐一套嚴謹的 **「人類架構師治理（Human Governance）+ AI Agent 協同分析與實證執行（Agentic Execution）」** 閉環流程：
+呼應優式資本探索 **「如何應用 AI 的分析能力去輔助目前交易系統與工程化」** 之核心方向，本專案透過 [`AGENTS.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/AGENTS.md) 強制實施 **「The Chain of Truth（真實之鏈）」三層級管理框架**，將人類工程師（曾子恩）的架構治理與 AI Agent 的協同分析實作建立嚴格的雙向追溯：
 
-* **人類工程師（曾子恩）主導之關鍵決策與品質把關**：
-  1. **制定標準軟體工程結構**：要求建立三題 100% 對稱之五階段目錄（`docs/01~04`、`src/`、`src_native/`、`tests/`、`results/`），並指示先調研國內外與 GitHub 開源方案。
-  2. **貫徹實證主義（Evidence-Based Discipline）**：強制要求「每一題做完後必須在實機實際跑過，才整理報告」，驅動消除硬編碼常數並建立自動化擷取實測 JSON 之 PDF 流水線。
-  3. **語言選擇與硬體效率質疑**：在初版 Python 測試通過後，主動質疑單一高階語言對執行效率的限制，要求檢索國內外最佳實踐並進行跨語言極致最佳化，促成 **Python 3.12 + C11 (`/O2`) 雙軌制引擎**。
-  4. **全面可追溯性與考題逐字核對**：要求記錄每一筆修改於開發日誌，並核對原始簡報補齊 $n=50$ 大規模員工測試與題目三下一列 (`Row 9`) 馬可夫預測器。
-* **AI Agent 協同完成之分析與工程實作**：
-  1. **二進位逆向與多假說統計探勘**：自動解析 PPTX XML，於無第三方套件下撰寫純標準庫 RFC 2083 Paeth PNG 解碼器還原 $9 \times 5$ 色塊矩陣，並執行多組統計腳本驗證正交四著色、鏡像對稱與方向異向性。
-  2. **開源技術導入與雙軌編碼**：檢索並導入 `Stockfish` Bitboard/SWAR（單解 **`16.7~21.8 ns`**）、`mattconte/tlsf` 侵入式顯式雙向自由串列（加速 **`22.6x~51.2x`**）與 Daniel Lemire 無除法洗牌（百萬次模擬 **`104~134 ms`**），並完成 18 項自動化單元測試。
+1. **第一層：Strategy 層 ([`/strategy/`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/strategy/))** — 定義專案主體目標与頂層架構：
+   * [`strategy/product_vision.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/strategy/product_vision.md)：專案主體願景與四大任務量化驗收指標（OKRs）。
+   * [`strategy/app_architecture.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/strategy/app_architecture.md)：Python 3.12 + C11 (`/O2`) 雙軌技術架構與三層級關聯圖。
+   * [`strategy/roadmap.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/strategy/roadmap.md)：五階段發展路線圖與「計畫外新功能（如 C11 原生引擎、$n=50$ 擴展測試、`Row 9` 馬可夫預測器）」向上同步紀錄。
+2. **第二層：Task 層 ([`/tasks/`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/tasks/))** — 向下追溯自 Strategy，以「追加（Append）」方式動態記錄實作演進與技術決策 (`implementation-process.md`)：
+   * [`tasks/TASK-01-Scheduling-System/`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/tasks/TASK-01-Scheduling-System/)：題目一排班與突發狀況動態應變系統（[`task.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/tasks/TASK-01-Scheduling-System/task.md) / [`implementation-process.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/tasks/TASK-01-Scheduling-System/implementation-process.md)）。
+   * [`tasks/TASK-02-Memory-Allocator/`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/tasks/TASK-02-Memory-Allocator/)：題目二 C 語言 `malloc` 效能問題與自訂 `myMalloc` 配置器（[`task.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/tasks/TASK-02-Memory-Allocator/task.md) / [`implementation-process.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/tasks/TASK-02-Memory-Allocator/implementation-process.md)）。
+   * [`tasks/TASK-03-Pattern-Analysis/`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/tasks/TASK-03-Pattern-Analysis/)：題目三色彩矩陣特徵、趨勢與規則分析歸納（[`task.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/tasks/TASK-03-Pattern-Analysis/task.md) / [`implementation-process.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/tasks/TASK-03-Pattern-Analysis/implementation-process.md)）。
+   * [`tasks/TASK-04-Visual-PDF-And-Governance/`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/tasks/TASK-04-Visual-PDF-And-Governance/)：視覺化向量圖表雙 PDF 報告、實證流水線與三層級治理（[`task.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/tasks/TASK-04-Visual-PDF-And-Governance/task.md) / [`implementation-process.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/tasks/TASK-04-Visual-PDF-And-Governance/implementation-process.md)）。
+3. **第三層：Worklog 層 ([`/worklogs/`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/worklogs/))** — 緊扣 Task ID，詳實記錄實機 CLI 指令 (`## Execution`)、報錯與邏輯阻礙 (`## Obstacles`) 及修復方案 (`## Resolution`)，並向上同步至 Task 層：
+   * [`worklogs/2026-11-16-TASK-01.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/worklogs/2026-11-16-TASK-01.md)
+   * [`worklogs/2026-11-16-TASK-02.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/worklogs/2026-11-16-TASK-02.md)
+   * [`worklogs/2026-11-16-TASK-03.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/worklogs/2026-11-16-TASK-03.md)
+   * [`worklogs/2026-11-16-TASK-04.md`](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/worklogs/2026-11-16-TASK-04.md)
 
 ---
 
 ## 三、專案目錄結構（乾淨分層設計）
 
-根目錄僅保留最核心的考題簡報、兩份最終 PDF 報告與三個題目子專案，所有整合性 Markdown 文件與 PDF 自動化建置工具統一收納於 `docs_and_tools/`：
-
 ```text
 UCCapital/
 ├── 2026 Q4 面試前考題 V1.pptx                   # 原始考題簡報
-├── UCCapital_面試考題_最終說明報告.pdf           # 【最終報告 1】三題演算法、架構圖與 17 張實測圖表總報告
-├── UCCapital_實作思考與軟體工程流程報告.pdf       # 【最終報告 2】Human-AI Agent 協作、思考脈絡與軟體工程流程報告
+├── UCCapital_面試考題_最終說明報告.pdf           # 【最終報告 1】三題演算法、架構圖與 17 張實測圖表總報告 (14頁)
+├── UCCapital_實作思考與軟體工程流程報告.pdf       # 【最終報告 2】Human-AI 協作、The Chain of Truth 與流程報告 (5頁)
+├── AGENTS.md                                   # Antigravity 專案開發規則 (The Chain of Truth 三層級強制規範)
 ├── README.md                                   # 專案總覽與快速執行指南（本文件）
 ├── .gitignore                                  # 版本控制忽略規則
 │
-├── Q1_Scheduling/                              # 【題目一：員工排班與突發狀況動態應變系統 (Python + C11)】
-│   ├── README.md
-│   ├── docs/         (01_analysis.md, 02_architecture.md, 03_implementation_plan.md, 04_dev_log.md)
-│   ├── src/          (__init__.py, models.py, solvers.py, contingency.py, main.py)
-│   ├── src_native/   (fast_scheduler.c — C11 Bitboard/SWAR ~20ns 暫存器級極速引擎)
-│   ├── tests/        (test_scheduling.py — 7 大項單元測試，含 374 種請假窮舉與 n=50 擴展測試)
-│   ├── scripts/      (run_all.bat)
-│   └── results/      (test_and_benchmark_report.md)
+├── strategy/                                   # 【The Chain of Truth 第 1 層：Strategy 策略層】
+│   ├── product_vision.md                       # 專案主體目標與量化驗收指標
+│   ├── app_architecture.md                     # C11/Python 雙軌技術架構與三層級關聯圖
+│   └── roadmap.md                              # 研發階段路線圖與計畫外功能向上同步紀錄
 │
-├── Q2_MemoryAllocator/                         # 【題目二：C 語言 malloc 優化與 myMalloc 實作 (C11, +10% 加分)】
-│   ├── README.md
-│   ├── docs/         (01_analysis.md, 02_architecture.md, 03_implementation_plan.md, 04_dev_log.md)
-│   ├── include/      (my_malloc.h — 16-Byte 對齊、統計介面與 Magic 防護定義)
-│   ├── src/          (my_malloc.c — Tier-1 O(1) Slab + Tier-2 顯式雙向自由串列 Arena, main_demo.c)
-│   ├── tests/        (test_my_malloc.c — 5 項測試, benchmark_malloc.c — 214 萬次壓力基準測試)
-│   ├── scripts/      (build_and_run.bat)
-│   └── results/      (test_and_benchmark_report.md)
+├── tasks/                                      # 【The Chain of Truth 第 2 層：Task 任務與實作演進層】
+│   ├── TASK-01-Scheduling-System/              # (task.md, implementation-process.md)
+│   ├── TASK-02-Memory-Allocator/               # (task.md, implementation-process.md)
+│   ├── TASK-03-Pattern-Analysis/               # (task.md, implementation-process.md)
+│   └── TASK-04-Visual-PDF-And-Governance/      # (task.md, implementation-process.md)
 │
-├── Q3_PatternAnalysis/                         # 【題目三：色彩矩陣特徵、趨勢與規則分析歸納 (Python + C11)】
-│   ├── README.md
-│   ├── assets/       (slide4_image1.png — 原始 575x313 圖檔)
-│   ├── docs/         (01_analysis.md, 02_architecture.md, 03_implementation_plan.md, 04_dev_log.md)
-│   ├── src/          (png_decoder.py, pattern_analyzer.py, hypothesis_prover.py, main.py)
-│   ├── src_native/   (fast_monte_carlo.c — C11 xorshift64* + Lemire 無除法百萬次洗牌引擎)
-│   ├── tests/        (test_pattern_analysis.py — 6 項測試，含 Row 9 馬可夫規律預測驗證)
-│   ├── scripts/      (run_all.bat)
-│   └── results/      (analysis_and_proof_report.md)
+├── worklogs/                                   # 【The Chain of Truth 第 3 層：Worklog 實機執行與除錯日誌層】
+│   ├── 2026-11-16-TASK-01.md                   # 含 ## Execution / ## Obstacles / ## Resolution
+│   ├── 2026-11-16-TASK-02.md                   # 含 ## Execution / ## Obstacles / ## Resolution
+│   ├── 2026-11-16-TASK-03.md                   # 含 ## Execution / ## Obstacles / ## Resolution
+│   └── 2026-11-16-TASK-04.md                   # 含 ## Execution / ## Obstacles / ## Resolution
 │
-└── docs_and_tools/                             # 【整合技術文件、人機協作全域日誌與 PDF 自動化建置工具】
+├── Q1_Scheduling/                              # 【題目一實作區：docs(01~04), src, src_native(C11), tests(7項), results】
+├── Q2_MemoryAllocator/                         # 【題目二實作區：docs(01~04), include, src(C11), tests(5項+基準), results】
+├── Q3_PatternAnalysis/                         # 【題目三實作區：docs(01~04), assets, src, src_native(C11), tests(6項), results】
+└── docs_and_tools/                             # 【整合文件與自動化 PDF 建置流水線工具區】
     ├── FINAL_REPORT.md                         # 三題完整技術總結報告 (Markdown 版)
-    ├── WORKFLOW_AND_THOUGHT_PROCESS.md         # Human-AI Agent 協作、思考脈絡與軟體工程流程說明 (Markdown 版)
+    ├── WORKFLOW_AND_THOUGHT_PROCESS.md         # Human-AI 協作、思考脈絡與軟體工程流程說明 (Markdown 版)
     ├── PROJECT_ARCHITECTURE.md                 # 軟體工程流程規範、Agent 治理與低延遲設計哲學
     ├── DEVELOPMENT_LOG.md                      # 全專案完整時間軸人機協作開發、除錯與最佳化總日誌
     ├── run_all_pipeline.bat                    # 全專案一鍵自動化驗證與雙 PDF 報告建置流水線
-    └── pdf_generator/                          # 純 Python SVG 圖表與 PDF 渲染引擎
-        ├── README.md
-        ├── build_report.py                     # 產出 UCCapital_面試考題_最終說明報告.pdf
-        ├── build_workflow_pdf.py               # 產出 UCCapital_實作思考與軟體工程流程報告.pdf
-        └── build/                              # 建置輸出之 HTML 與即時實測 JSON 數據
+    └── pdf_generator/                          # 純 Python SVG 圖表與 PDF 渲染引擎 (build_report.py, build_workflow_pdf.py)
 ```
 
 ---

@@ -842,12 +842,12 @@ def build_html(q1: dict, q2: dict, q3: dict) -> str:
     ]))
 
     # ---------------- 限制 ----------------
-    H.append('<div class="page-break"></div><div style="font-size:9.3pt;line-height:1.42"><h1>5. 限制、AI Agent 協同治理與誠實聲明</h1>')
+    H.append('<div class="page-break"></div><div style="font-size:8.9pt;line-height:1.35"><h1>5. 限制、AI Agent 協同治理與誠實聲明</h1>')
     H.append(f"""<p>為讓評審清楚了解本專案之開發方法論與結論適用範圍，以下誠實列出本次實作之 <b>Human-AI Agent 協同研發分工</b>與<b>已知技術限制</b>：</p>
 <h3>AI Agent 協同研發與人類工程師治理（Human-in-the-Loop Governance）</h3>
 <ul>
 <li><b>協同分工透明揭露</b>：本專案使用 AI Agent 輔助進行 PPTX/PNG 底層逆向解析、多假說統計探勘、國內外與 GitHub 開源文獻檢索（<code>Stockfish</code> Bitboard、<code>mattconte/tlsf</code>、Daniel Lemire 無除法洗牌）、Python/C11 雙軌程式碼撰寫與 SVG 向量圖表排版。</li>
-<li><b>人類工程師（曾子恩）主導之關鍵決策與除錯把關</b>：(1) 指定標準五階段軟體工程目錄與模組化設計；(2) 強制規定「每題實機跑過才整理報告」，在實測中校正 Q1 全解空間為 34 組（374 案例）、診斷並修復 Q2 4MB 區塊經 <code>VirtualFree</code> 卸載後二次讀取之邊界問題、消除 Q3 卡方檢定硬編碼常數改為動態計算；(3) 主動質疑單一語言對執行效率之限制，驅動增建 C11 (<code>MSVC /O2</code>) 暫存器級原生引擎；(4) 逐字核對原始考題簡報，補齊 <code>n=50</code> 員工擴展測試與題目三 <code>Row 9</code> 預測器。</li>
+<li><b>人類工程師（曾子恩）主導之關鍵決策與 The Chain of Truth 三層級治理</b>：(1) 制定 <code>AGENTS.md</code> 三層級管理框架（<code>/strategy/</code> 頂層目標 → <code>/tasks/</code> 實作演進 → <code>/worklogs/</code> 實機指令與障礙排除日誌）及五階段模組化目錄；(2) 強制規定「每題實機跑過才整理報告」，在實測中校正 Q1 全解空間為 34 組（374 案例）、診斷並修復 Q2 4MB 區塊經 <code>VirtualFree</code> 卸載後二次讀取之邊界問題、消除 Q3 卡方檢定硬編碼常數改為動態計算；(3) 主動質疑單一語言對執行效率之限制，驅動增建 C11 (<code>MSVC /O2</code>) 暫存器級原生引擎；(4) 逐字核對原始考題簡報，補齊 <code>n=50</code> 員工擴展測試與題目三 <code>Row 9</code> 預測器。</li>
 </ul>
 <h3>題目一技術限制</h3>
 <ul>
@@ -865,15 +865,14 @@ def build_html(q1: dict, q2: dict, q3: dict) -> str:
 <li>C11 蒙地卡羅 1,000,000 次中 0 次命中，依統計三法則（Rule of Three）在 95% 信賴水準下可嚴格推得 p &lt; 3×10<sup>-6</sup>；報告中的 {q3['theory_p']:.1e} 則是以獨立近似估算的理論量級。鏡像對稱的 1/2187 假設各列獨立；「與題目一同構」為合理解讀與應用展示。</li>
 </ul>
 
-<h1>6. 附錄：專案結構與重現方式</h1>
-<pre>UCCapital/
-├── 2026 Q4 面試前考題 V1.pptx / 最終說明報告.pdf (14頁) / 實作思考與軟體工程流程報告.pdf / README.md
-├── Q1_Scheduling/      docs/(01~04)  src/(Python)  src_native/fast_scheduler.c(C11)  tests/  scripts/  results/
-├── Q2_MemoryAllocator/ docs/(01~04)  include/my_malloc.h  src/(my_malloc.c, main_demo.c)  tests/  results/
-├── Q3_PatternAnalysis/ docs/(01~04)  assets/  src/(Python)  src_native/fast_monte_carlo.c(C11)  tests/  results/
-└── docs_and_tools/     FINAL_REPORT.md / WORKFLOW_AND_THOUGHT_PROCESS.md / DEVELOPMENT_LOG.md
-                        PROJECT_ARCHITECTURE.md / run_all_pipeline.bat / pdf_generator/
-# 一鍵執行全專案（含 C11 編譯、Python 18 項單元測試與重產雙份 PDF）： cmd.exe /c docs_and_tools\\run_all_pipeline.bat</pre></div>""")
+<h1>6. 附錄：專案結構與重現方式（一鍵執行：<code>cmd.exe /c docs_and_tools\\run_all_pipeline.bat</code>）</h1>
+<pre style="padding:5px 8px;margin:4px 0;font-size:8.0pt">UCCapital/
+├── AGENTS.md / README.md / 2026 Q4 面試前考題 V1.pptx / 最終說明報告.pdf (14頁) / 思考與流程報告.pdf (5頁)
+├── strategy/           product_vision.md / app_architecture.md / roadmap.md  (第 1 層：Strategy 策略層)
+├── tasks/              TASK-01 ~ TASK-04 (task.md, implementation-process.md) (第 2 層：Task 實作演進層)
+├── worklogs/           2026-11-16-TASK-01~04.md (Execution/Obstacles/Resolution) (第 3 層：Worklog 日誌層)
+├── Q1_Scheduling/ & Q2_MemoryAllocator/ & Q3_PatternAnalysis/  (三題 docs / src / src_native / tests / results)
+└── docs_and_tools/     FINAL_REPORT.md / WORKFLOW_AND_THOUGHT_PROCESS.md / run_all_pipeline.bat / pdf_generator/</pre></div>""")
     H.append("</body></html>")
     return "".join(H)
 

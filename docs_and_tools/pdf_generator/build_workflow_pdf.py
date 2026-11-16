@@ -343,22 +343,22 @@ def svg_iteration_speedup_bars(
 
 
 # ---------------------------------------------------------------------------
-# 圖 11：整理後之雙層清晰專案目錄架構圖
+# 圖 11：The Chain of Truth 三層級治理與專案目錄架構圖
 # ---------------------------------------------------------------------------
 def svg_clean_directory_architecture() -> str:
     w, h = 740, 232
     p = [
         svg_open(w, h),
-        svg_text(w / 2, 19, "收斂整理後之專案目錄結構與職責分層圖", 13.5, weight="bold", color=C_NAVY),
-        f'<rect x="230" y="30" width="280" height="32" rx="6" fill="{C_NAVY}"/>',
-        svg_text(370, 51, "UCCapital/ （乾淨的專案根目錄）", 11.2, color="#fff", weight="bold"),
+        svg_text(w / 2, 19, "The Chain of Truth 三層級治理與專案標準化目錄結構圖", 13.5, weight="bold", color=C_NAVY),
+        f'<rect x="190" y="30" width="360" height="32" rx="6" fill="{C_NAVY}"/>',
+        svg_text(370, 51, "UCCapital/ （AGENTS.md 規範三層級治理 + 三題實作區）", 10.8, color="#fff", weight="bold"),
     ]
     boxes = [
-        ("核心交付報告區 (Root)", "2026 Q4 面試前考題 V1.pptx\n最終說明報告.pdf (14頁)\n思考與工程流程報告.pdf\nREADME.md", C_ORANGE),
+        ("核心交付報告區 (Root)", "2026 Q4 面試前考題 V1.pptx\n最終說明報告.pdf (14頁)\n思考與工程流程報告.pdf\nAGENTS.md & README.md", C_ORANGE),
+        ("The Chain of Truth", "strategy/ (目標/架構/路線圖)\ntasks/ (TASK-01~04 演進)\nworklogs/ (Execution/\nObstacles/Resolution)", C_PURPLE),
         ("Q1_Scheduling/", "docs/ (01~04 含協作日誌)\nsrc/ (Python 領域模型)\nsrc_native/ (C11 Bitboard)\ntests/ (7 項測試) & results/", C_BLUE),
         ("Q2_MemoryAllocator/", "docs/ (01~04 含協作日誌)\ninclude/ & src/ (C11 配置器)\ntests/ (測試與百萬次基準)\nscripts/ & results/", C_TEAL),
-        ("Q3_PatternAnalysis/", "docs/ (01~04) & assets/\nsrc/ (PNG 解碼與規律證明)\nsrc_native/ (C11 蒙地卡羅)\ntests/ (6 項測試) & results/", C_GREEN),
-        ("docs_and_tools/", "FINAL_REPORT.md\nWORKFLOW_PROCESS.md\nDEVELOPMENT_LOG.md\npdf_generator/ & 流水線腳本", C_PURPLE),
+        ("Q3 & docs_and_tools/", "Q3_PatternAnalysis/\n(PNG 解碼 + C11 蒙地卡羅)\ndocs_and_tools/\n(pdf_generator & 流水線)", C_GREEN),
     ]
     bw, bh = 136, 130
     gap = 10
@@ -369,9 +369,9 @@ def svg_clean_directory_architecture() -> str:
         p.append(f'<line x1="370" y1="62" x2="{cx}" y2="{y0}" stroke="#888" stroke-width="1.5"/>')
         p.append(f'<rect x="{x}" y="{y0}" width="{bw}" height="{bh}" rx="7" fill="#FAFBFD" stroke="{col}" stroke-width="2"/>')
         p.append(f'<rect x="{x}" y="{y0}" width="{bw}" height="24" rx="6" fill="{col}"/>')
-        p.append(svg_text(cx, y0 + 16, title, 9.8, color="#fff", weight="bold"))
+        p.append(svg_text(cx, y0 + 16, title, 9.6, color="#fff", weight="bold"))
         for k, line in enumerate(body.split("\n")):
-            p.append(svg_text(cx, y0 + 40 + k * 20, line, 8.6, color="#333"))
+            p.append(svg_text(cx, y0 + 40 + k * 20, line, 8.5, color="#333"))
     p.append("</svg>")
     return "".join(p)
 
@@ -510,20 +510,19 @@ def build_workflow_html() -> str:
     H.append(f"<figure>{svg_horizontal_chain('題目三視覺規律挖掘與演算法證明思考流程', [('1. 零依賴像素逆向', '[Agent] 環境無 PIL 套件\n自寫 RFC 2083 Paeth 解碼\n還原 575×313 為 9×5 矩陣', C_NAVY), ('2. 多假說規律探勘', '[Agent] 執行 8 組探勘腳本\n排除 ±1 階梯假說，確立正交\n0 衝突與右三欄 X-Y-X 對稱', C_BLUE), ('3. 動態統計與無除法加速', '[Human] 要求實證與極致效率\n[Agent] 改動態卡方並引進 C11\nLemire 無除法百萬次洗牌', C_GREEN), ('4. 跨題同構與預測', '[Human] 核對考題完備性\n[Agent] 建立馬可夫生成器\n自動預測 Row 9 (B-G-B-R-B)', C_ORANGE)])}<figcaption>圖 9：題目三從無第三方套件逆向解碼、多假說探勘、C11 無除法百萬次模擬到 Row 9 預測之思考流程</figcaption></figure>")
     H.append(f"<figure>{svg_iteration_speedup_bars('題目三每 50,000 次蒙地卡羅隨機排列檢定耗時演進（越短越快，單位：毫秒 ms）', ['v1.0 Python 二維座標迴圈', 'v2.0 Python 預編譯 76 邊一維 Tuple', 'v3.0 C11 xorshift64* + 傳統 % 除法', 'v4.0 C11 xorshift64* + Lemire 無除法乘法位移'], [95.0, 68.0, 14.82, q3_c_50k_ms], 'ms', ['#7F7F7F', C_BLUE, C_TEAL, C_GREEN], f'v4.0 以單週期 64-bit 乘法位移取代 30 週期 idiv 除法指令，跑完 1,000,000 次僅需 {q3_c_1m_ms:.1f} ms（每 5 萬次僅 {q3_c_50k_ms:.2f} ms）', height=185)}<figcaption>圖 10：題目三蒙地卡羅檢定引擎歷經四代演進之實測耗時變化</figcaption></figure>")
 
-    H.append("<h1>5. 實證測試流水線（TDD Pipeline）與專案目錄整理</h1>")
-    H.append(f"<figure>{svg_clean_directory_architecture()}<figcaption>圖 11：收斂整理後之專案頂層與子專案標準化目錄結構圖</figcaption></figure>")
+    H.append("<h1>5. The Chain of Truth 三層級治理與專案目錄架構</h1>")
+    H.append(f"<figure>{svg_clean_directory_architecture()}<figcaption>圖 11：結合 The Chain of Truth (strategy / tasks / worklogs) 與三題實作區之專案目錄結構圖</figcaption></figure>")
 
     H.append("""
-<pre>UCCapital/                                      ← 【專案根目錄：清爽、僅保留核心交付檔案與子專案入口】
-├── 2026 Q4 面試前考題 V1.pptx                   # 1. 原始面試考題簡報
+<pre style="font-size:8.0pt;padding:6px 8px">UCCapital/                                      ← 【專案根目錄：The Chain of Truth 三層級治理 + 核心交付區】
+├── AGENTS.md & README.md                       # 1. Antigravity 三層級開發規則與專案總覽
 ├── UCCapital_面試考題_最終說明報告.pdf           # 2. 【核心交付 1】三題技術、演算法與 17 張實測圖表總報告 (14頁)
-├── UCCapital_實作思考與軟體工程流程報告.pdf       # 3. 【核心交付 2】Human-AI 協作、思考脈絡與 11 張流程圖報告
-├── README.md & .gitignore                      # 4. 專案總覽、Human-AI 協同方法論與 Git 忽略規則
-├── Q1_Scheduling/                              # 【題目一：docs(01~04), src, src_native, tests(7項), results】
-├── Q2_MemoryAllocator/                         # 【題目二：docs(01~04), include, src, tests(5項+基準), results】
-├── Q3_PatternAnalysis/                         # 【題目三：docs(01~04), assets, src, src_native, tests(6項)】
-└── docs_and_tools/                             # 【整合文件區：FINAL_REPORT.md, WORKFLOW_AND_THOUGHT_PROCESS.md,
-                                                #   DEVELOPMENT_LOG.md, run_all_pipeline.bat, pdf_generator/】</pre>
+├── UCCapital_實作思考與軟體工程流程報告.pdf       # 3. 【核心交付 2】Human-AI 協作、思考脈絡與 11 張流程圖報告 (5頁)
+├── strategy/                                   # 4. 【第 1 層：Strategy】product_vision / app_architecture / roadmap
+├── tasks/                                      # 5. 【第 2 層：Task】TASK-01~04 (task.md, implementation-process.md)
+├── worklogs/                                   # 6. 【第 3 層：Worklog】2026-11-16-TASK-01~04 (Execution/Obstacles/Resolution)
+├── Q1_Scheduling / Q2_MemoryAllocator / Q3_PatternAnalysis  # 7. 【三題程式碼、C11 原生引擎與 18 項單元測試區】
+└── docs_and_tools/                             # 8. 【整合報告與一鍵驗證流水線：run_all_pipeline.bat, pdf_generator/】</pre>
 """)
     H.append("</body></html>")
     return "".join(H)
