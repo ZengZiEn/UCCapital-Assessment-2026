@@ -1,0 +1,31 @@
+# UC Capital 面試考題專案 — 全域研發、測試與最佳化總日誌 (`DEVELOPMENT_LOG.md`)
+
+本文件為專案根目錄之**總工程日誌（Master Engineering & Audit Log）**，完整記錄從最初解析考題簡報、國內外文獻與 GitHub 開源方案調研、三題架構設計、單元測試與編譯除錯、PDF 向量圖表自動化排版，到最終跨語言（C11 + Python）底層硬體最佳化的每一個操作步驟與修改原因。
+
+---
+
+## 一、各子專案詳細開發日誌連結
+
+* **題目一（排班與突發狀況動態應變）開發日誌**：[Q1_Scheduling/docs/04_dev_log.md](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/Q1_Scheduling/docs/04_dev_log.md)
+* **題目二（C 語言 `malloc` 效能與 `myMalloc` 實作）開發日誌**：[Q2_MemoryAllocator/docs/04_dev_log.md](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/Q2_MemoryAllocator/docs/04_dev_log.md)
+* **題目三（色彩矩陣特徵歸納與演算法證明）開發日誌**：[Q3_PatternAnalysis/docs/04_dev_log.md](file:///c:/Users/user/Desktop/my%20datas/面試相關/UCCapital/Q3_PatternAnalysis/docs/04_dev_log.md)
+
+---
+
+## 二、全專案完整操作與修改時間軸 (Chronological Master Log)
+
+| 時間戳記 | 階段與目標模組 | 執行動作 / 發現問題 / 具體修改內容 | 驗證結果與量化指標 |
+| :---: | :--- | :--- | :--- |
+| **09:15** | **考題解析**<br>(`2026 Q4 面試前考題 V1.pptx`) | 以 Python 解析 PPTX 內部 XML (`slide1.xml` ~ `slide4.xml`) 與備忘稿，並將第 4 頁內嵌圖檔 `ppt/media/image1.png` 提取出來檢查。 | 完整提取三題題目文字與 `575x313` PNG 圖檔。 |
+| **09:18 – 09:22** | **題目三初步探勘**<br>(`slide4_image1.png`) | 因環境無安裝 `PIL`，改以標準庫 `zlib` + `struct` 撰寫純 Python PNG 解碼器還原 RGBA 像素，發現圖形為 $9 \times 5$ Excel 標準四色矩陣（`#FF0000`, `#FFC000`, `#70AD47`, `#0070C0`），並初步驗證正交同色邊數 = `0`、右三欄鏡像對稱等性質。 | 100% 準確還原 45 格符號矩陣。 |
+| **09:29 – 09:31** | **開源調研與環境探測**<br>(全專案) | 1. 搜尋國內外針對優式資本面試、Nurse Scheduling 最大流/回溯修復、以及 GitHub C 語言 Slab / Pool Allocator 的實踐。<br>2. 探測本機 C 編譯器，確認安裝有 `MSVC 14.44.35207` (`cl.exe`) 與 Windows 10 SDK (`10.0.26100.0`)。 | 確立三題軟體工程五階段目錄結構與編譯環境。 |
+| **09:32 – 09:39** | **題目一初版建置與測試修正**<br>(`Q1_Scheduling/`) | 1. 撰寫 `docs/` 四份文件與 `src/models.py`、`solvers.py`、`contingency.py`、`main.py`、`tests/test_scheduling.py`。<br>2. **修正 1**：補上 `tests/__init__.py` 解決含空白路徑下 `unittest` 匯入問題。<br>3. **修正 2**：經程式嚴格窮舉確認合法初始班表共 **34 組**（對應 $34 \times 11 = 374$ 種突發請假案例），同步更新測試斷言與文件。 | 6 項單元測試全數通過（`0.008s OK`），374 種請假 100% 修復成功。 |
+| **09:40 – 09:50** | **題目二初版建置與除錯**<br>(`Q2_MemoryAllocator/`) | 1. 撰寫 `docs/` 四份文件、`include/my_malloc.h`、`src/my_malloc.c`、`src/main_demo.c`、`tests/test_my_malloc.c`、`tests/benchmark_malloc.c`。<br>2. **修正 1**：將 `scripts/build_and_run.bat` 改為直接注入 `INCLUDE`/`LIB`/`PATH`，解決沙箱內 `vcvars64.bat` 註冊表查詢限制與批次檔中文編碼偏移。<br>3. **修正 2**：在 `test_my_malloc.c` 中發現對 `4 MB` OS Fallback 區塊呼叫系統 `free()` 後，Windows CRT 會立即呼叫 `VirtualFree` 卸載虛擬分頁，若對該已卸載位址做第二次讀取會觸發 `Access Violation`；遂將超大區塊釋放測試與池內常駐區塊之 Double-Free 攔截測試分離。 | `main_demo.exe`、5 項單元測試 `test_my_malloc.exe` 與百萬次 `benchmark_malloc.exe` 全數通過。 |
+| **09:50 – 09:55** | **題目三初版建置與根目錄總結**<br>(`Q3_PatternAnalysis/` & Root) | 撰寫題目三 `png_decoder.py`、`pattern_analyzer.py`、`hypothesis_prover.py`、`main.py` 與 5 項單元測試；建立根目錄 `README.md`、`PROJECT_ARCHITECTURE.md`、`FINAL_REPORT.md`。 | 題目三 5 項單元測試全數通過（`0.103s OK`）。 |
+| **10:00 – 10:05** | **題目三消除硬編碼修正與三題重跑驗證**<br>(`Q3_PatternAnalysis/` & `report_pdf/`) | 1. **修正**：發現 `hypothesis_prover.py` 的卡方檢定原本使用前一步算出的常數 `21, 15, 11, 29`，立即改為直接遍歷 `self.grid` 動態統計 2×2 列聯表。<br>2. **建立 PDF 產生器**：撰寫 `report_pdf/build_report.py`，以純 Python 產生 17 張 SVG 向量圖表並合成 HTML。<br>3. **依序實跑三題驗證**：重新執行 Q1、Q2、Q3 全部測試與主程式確認無誤。 | 動態計算之 $\chi^2 = 7.3895$ 完全一致，三題測試 100% 通過。 |
+| **10:06 – 10:14** | **PDF 無頭瀏覽器渲染修復與排版微調**<br>(`report_pdf/build_report.py`) | 1. **修正 1（URI 編碼與沙箱參數）**：發現工作區路徑含有空白 (`my datas`) 與中文 (`面試相關`)，直接字串拼接 `file:///` 會導致 Chrome/Edge 無法載入；改用 `pathlib.Path(html_path).as_uri()` 自動進行百分比 URL 編碼並加上 `--no-sandbox`，成功在沙箱內直接產出 PDF。<br>2. **修正 2（視覺排版與圖號校正）**：逐頁檢視產出的 PDF 截圖，微調第 8 頁圖 8、圖 9 高度以消除單行溢頁，並修正第 9 頁並列圖片的 `FigureCounter` 遞增順序，使圖 1 至圖 17 編號完全連續。 | 成功產出 14 頁排版勻稱之 `UCCapital_面試考題_最終說明報告.pdf`。 |
+| **10:15 – 10:18** | **專案目錄全面稽核與標準化**<br>(全專案) | 1. 清除 `report_pdf/build/` 下診斷時留下的 `browser_profile/` 與 `chrome_profile/` 暫存目錄。<br>2. 補齊 `Q1_Scheduling/scripts/run_all.bat`、`Q3_PatternAnalysis/scripts/run_all.bat`、`report_pdf/README.md`、根目錄 `.gitignore` 與 `scripts/run_all_pipeline.bat`，使三個子專案目錄結構 100% 對稱。 | 目錄樹完全對齊軟體工程標準。 |
+| **10:22 – 10:36** | **語言選擇檢討與跨語言極致最佳化**<br>(C11 原生引擎 + 開源資料結構升級) | 1. **題目一最佳化**：(a) 將 Python `BitmaskMRVSolver` 遞迴內的動態排序與字典操作預編譯為平坦 Tuple，耗時由 `27.5 us` 降至 `13.5 us`；(b) 參考 GitHub `Stockfish` Bitboard 與 `yb303/swar` 撰寫 C11 原生引擎 `Q1_Scheduling/src_native/fast_scheduler.c`，將單解搜尋壓縮至 **`20.62 ns`（比 Python 快 `655 倍`）**、全 34 解枚舉 **`155.3 ns`**！<br>2. **題目二最佳化**：參考 GitHub `mattconte/tlsf` 與 `dlmalloc`，將 `Q2_MemoryAllocator/src/my_malloc.c` 的 Tier-2 Arena 由隱式線性掃描升級為 **侵入式顯式雙向自由串列 (`ArenaFreeNode`)**，分配時直接跳至空閒塊 ($O(1)$)。<br>3. **題目三最佳化**：(a) 將 Python 蒙地卡羅迴圈內的 76 條邊預編譯為一維索引 Tuple；(b) 新增 C11 原生引擎 `Q3_PatternAnalysis/src_native/fast_monte_carlo.c`，結合 Marsaglia `xorshift64*` 與 **Daniel Lemire 無除法乘法位移洗牌**，將 1,000,000 次模擬耗時由 `296.4 ms` 降至 **`109.5 ~ 161.7 ms`**（每 5 萬次僅 `5.5 ~ 8.1 ms`）。<br>4. **更新報告與重新產出 PDF**：將跨語言實測數據整合進 `build_report.py` 與 `FINAL_REPORT.md`，重新執行產出最新 PDF。 | 全部 C11 與 Python 引擎編譯、測試、Benchmark 100% 通過，最終 PDF 報告同步更新完成。 |
+| **11:24 – 11:26** | **考題逐字交叉核對與演算法總表補強**<br>(`Q1`, `Q3`, `pdf_generator/`) | 1. **題目一新增 $n$ 人擴展測試 (`test_07_general_n_employees_scalability`)**：針對題目所述「某公司有 $n$ 位員工」，新增 $n = 50$ 位員工之排班與突發請假 1-Hop 修復自動化測試。<br>2. **題目三新增歸納規則生成預測器 (`predict_next_rows`) 與 `test_06`**：結合正交不衝突、右三欄鏡像對稱與馬可夫經驗轉移機率，自動推演最可能出現的下一列（`Row 9`：Top 1 為 `['B', 'G', 'B', 'R', 'B']`）。<br>3. **PDF 報告補入完整演算法時間/空間複雜度比較表**：於 `build_report.py` 中新增題目一（5 種演算法複雜度與資料結構對照表）、題目二（4 層配置器演算法複雜度對照表）與題目三（下一列生成預測結果），並重新執行產出最終 PDF。 | 題目一 7 項測試、題目二 5 項測試、題目三 6 項測試 100% 通過；PDF 報告完整包含所有演算法與複雜度表。 |
+| **11:29 – 11:42** | **實作思考流程 PDF 深度擴充、全套回歸實跑與目錄收斂**<br>(`docs_and_tools/` & 全專案) | 1. **目錄收斂整理**：將根目錄的整合性 Markdown 文件（`FINAL_REPORT.md`、`PROJECT_ARCHITECTURE.md`、`DEVELOPMENT_LOG.md`、`WORKFLOW_AND_THOUGHT_PROCESS.md`）與 `pdf_generator/` 統一收納至 `docs_and_tools/`，使根目錄僅保留考題簡報、2 份核心 PDF 報告、`README.md` 與三個標準題目子專案。<br>2. **擴充《實作思考與軟體工程流程報告 PDF》**：於 `build_workflow_pdf.py` 中繪製 **10 張向量圖表**（S 型七階段思考流程圖、8 大里程碑決策時間軸、Python vs C11 五維度互補評比圖、三題各自之思考決策鏈流程圖與多代加速長條圖、目錄分層架構圖），並自動讀取 `report_data.json` 確保兩份 PDF 數據 100% 同步。<br>3. **全專案回歸實跑 (`run_all_pipeline.bat`)**：完整重跑 Q1（C11 Bitboard + Python 7 項測試）、Q2（C11 5 項單元測試 + 214 萬次 Benchmark）、Q3（C11 百萬次蒙地卡羅 + Python 6 項測試），重新產出雙 PDF 並自動清除所有 `.obj` 與 `__pycache__` 暫存檔。 | 全專案 18 項自動化測試與百萬次基準測試 100% 通過，雙 PDF 報告產出完畢，工作區零暫存垃圾檔。 |
+

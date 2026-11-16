@@ -1,0 +1,1160 @@
+{
+  "q1": {
+    "employees": [
+      {
+        "name": "A",
+        "days": [
+          "Mon",
+          "Tue",
+          "Wed"
+        ],
+        "mask": 7
+      },
+      {
+        "name": "B",
+        "days": [
+          "Mon",
+          "Thu",
+          "Fri"
+        ],
+        "mask": 25
+      },
+      {
+        "name": "C",
+        "days": [
+          "Tue",
+          "Wed",
+          "Thu"
+        ],
+        "mask": 14
+      },
+      {
+        "name": "D",
+        "days": [
+          "Tue",
+          "Fri"
+        ],
+        "mask": 18
+      }
+    ],
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+    ],
+    "mrv": {
+      "Mon": "A",
+      "Tue": "C",
+      "Wed": "A",
+      "Thu": "B",
+      "Fri": "B"
+    },
+    "mrv_nodes": 5,
+    "dinic": {
+      "Mon": "A",
+      "Tue": "A",
+      "Wed": "C",
+      "Thu": "B",
+      "Fri": "B"
+    },
+    "t_mrv_us": 12.320699999690987,
+    "t_dinic_us": 44.928849999450904,
+    "t_all_us": 49.644000000625965,
+    "t_lookup_us": 0.21843600000465813,
+    "num_solutions": 34,
+    "reports": [
+      {
+        "sched": "Mon:A | Tue:C | Wed:A | Thu:B | Fri:D",
+        "assign": {
+          "Mon": "A",
+          "Tue": "C",
+          "Wed": "A",
+          "Thu": "B",
+          "Fri": "D"
+        },
+        "one_hop": 5,
+        "two_hop": 0,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.0
+      },
+      {
+        "sched": "Mon:A | Tue:D | Wed:A | Thu:B | Fri:D",
+        "assign": {
+          "Mon": "A",
+          "Tue": "D",
+          "Wed": "A",
+          "Thu": "B",
+          "Fri": "D"
+        },
+        "one_hop": 5,
+        "two_hop": 0,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.0
+      },
+      {
+        "sched": "Mon:A | Tue:D | Wed:A | Thu:C | Fri:B",
+        "assign": {
+          "Mon": "A",
+          "Tue": "D",
+          "Wed": "A",
+          "Thu": "C",
+          "Fri": "B"
+        },
+        "one_hop": 5,
+        "two_hop": 0,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.0
+      },
+      {
+        "sched": "Mon:A | Tue:D | Wed:A | Thu:C | Fri:D",
+        "assign": {
+          "Mon": "A",
+          "Tue": "D",
+          "Wed": "A",
+          "Thu": "C",
+          "Fri": "D"
+        },
+        "one_hop": 5,
+        "two_hop": 0,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.0
+      },
+      {
+        "sched": "Mon:A | Tue:D | Wed:C | Thu:B | Fri:D",
+        "assign": {
+          "Mon": "A",
+          "Tue": "D",
+          "Wed": "C",
+          "Thu": "B",
+          "Fri": "D"
+        },
+        "one_hop": 5,
+        "two_hop": 0,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.0
+      },
+      {
+        "sched": "Mon:A | Tue:D | Wed:C | Thu:C | Fri:B",
+        "assign": {
+          "Mon": "A",
+          "Tue": "D",
+          "Wed": "C",
+          "Thu": "C",
+          "Fri": "B"
+        },
+        "one_hop": 5,
+        "two_hop": 0,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.0
+      },
+      {
+        "sched": "Mon:A | Tue:D | Wed:C | Thu:C | Fri:D",
+        "assign": {
+          "Mon": "A",
+          "Tue": "D",
+          "Wed": "C",
+          "Thu": "C",
+          "Fri": "D"
+        },
+        "one_hop": 5,
+        "two_hop": 0,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.0
+      },
+      {
+        "sched": "Mon:B | Tue:A | Wed:C | Thu:C | Fri:D",
+        "assign": {
+          "Mon": "B",
+          "Tue": "A",
+          "Wed": "C",
+          "Thu": "C",
+          "Fri": "D"
+        },
+        "one_hop": 5,
+        "two_hop": 0,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.0
+      },
+      {
+        "sched": "Mon:B | Tue:D | Wed:A | Thu:C | Fri:D",
+        "assign": {
+          "Mon": "B",
+          "Tue": "D",
+          "Wed": "A",
+          "Thu": "C",
+          "Fri": "D"
+        },
+        "one_hop": 5,
+        "two_hop": 0,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.0
+      },
+      {
+        "sched": "Mon:B | Tue:D | Wed:C | Thu:C | Fri:D",
+        "assign": {
+          "Mon": "B",
+          "Tue": "D",
+          "Wed": "C",
+          "Thu": "C",
+          "Fri": "D"
+        },
+        "one_hop": 5,
+        "two_hop": 0,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.0
+      },
+      {
+        "sched": "Mon:A | Tue:A | Wed:C | Thu:B | Fri:D",
+        "assign": {
+          "Mon": "A",
+          "Tue": "A",
+          "Wed": "C",
+          "Thu": "B",
+          "Fri": "D"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:A | Tue:A | Wed:C | Thu:C | Fri:B",
+        "assign": {
+          "Mon": "A",
+          "Tue": "A",
+          "Wed": "C",
+          "Thu": "C",
+          "Fri": "B"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:A | Tue:A | Wed:C | Thu:C | Fri:D",
+        "assign": {
+          "Mon": "A",
+          "Tue": "A",
+          "Wed": "C",
+          "Thu": "C",
+          "Fri": "D"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:A | Tue:C | Wed:A | Thu:B | Fri:B",
+        "assign": {
+          "Mon": "A",
+          "Tue": "C",
+          "Wed": "A",
+          "Thu": "B",
+          "Fri": "B"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:A | Tue:C | Wed:A | Thu:C | Fri:B",
+        "assign": {
+          "Mon": "A",
+          "Tue": "C",
+          "Wed": "A",
+          "Thu": "C",
+          "Fri": "B"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:A | Tue:C | Wed:A | Thu:C | Fri:D",
+        "assign": {
+          "Mon": "A",
+          "Tue": "C",
+          "Wed": "A",
+          "Thu": "C",
+          "Fri": "D"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:A | Tue:C | Wed:C | Thu:B | Fri:D",
+        "assign": {
+          "Mon": "A",
+          "Tue": "C",
+          "Wed": "C",
+          "Thu": "B",
+          "Fri": "D"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:A | Tue:D | Wed:A | Thu:B | Fri:B",
+        "assign": {
+          "Mon": "A",
+          "Tue": "D",
+          "Wed": "A",
+          "Thu": "B",
+          "Fri": "B"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:A | Tue:D | Wed:C | Thu:B | Fri:B",
+        "assign": {
+          "Mon": "A",
+          "Tue": "D",
+          "Wed": "C",
+          "Thu": "B",
+          "Fri": "B"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:B | Tue:A | Wed:A | Thu:C | Fri:D",
+        "assign": {
+          "Mon": "B",
+          "Tue": "A",
+          "Wed": "A",
+          "Thu": "C",
+          "Fri": "D"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:B | Tue:A | Wed:C | Thu:B | Fri:D",
+        "assign": {
+          "Mon": "B",
+          "Tue": "A",
+          "Wed": "C",
+          "Thu": "B",
+          "Fri": "D"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:B | Tue:A | Wed:C | Thu:C | Fri:B",
+        "assign": {
+          "Mon": "B",
+          "Tue": "A",
+          "Wed": "C",
+          "Thu": "C",
+          "Fri": "B"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:B | Tue:C | Wed:A | Thu:B | Fri:D",
+        "assign": {
+          "Mon": "B",
+          "Tue": "C",
+          "Wed": "A",
+          "Thu": "B",
+          "Fri": "D"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:B | Tue:C | Wed:A | Thu:C | Fri:D",
+        "assign": {
+          "Mon": "B",
+          "Tue": "C",
+          "Wed": "A",
+          "Thu": "C",
+          "Fri": "D"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:B | Tue:D | Wed:A | Thu:B | Fri:D",
+        "assign": {
+          "Mon": "B",
+          "Tue": "D",
+          "Wed": "A",
+          "Thu": "B",
+          "Fri": "D"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:B | Tue:D | Wed:A | Thu:C | Fri:B",
+        "assign": {
+          "Mon": "B",
+          "Tue": "D",
+          "Wed": "A",
+          "Thu": "C",
+          "Fri": "B"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:B | Tue:D | Wed:C | Thu:B | Fri:D",
+        "assign": {
+          "Mon": "B",
+          "Tue": "D",
+          "Wed": "C",
+          "Thu": "B",
+          "Fri": "D"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:B | Tue:D | Wed:C | Thu:C | Fri:B",
+        "assign": {
+          "Mon": "B",
+          "Tue": "D",
+          "Wed": "C",
+          "Thu": "C",
+          "Fri": "B"
+        },
+        "one_hop": 4,
+        "two_hop": 1,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.2
+      },
+      {
+        "sched": "Mon:A | Tue:A | Wed:C | Thu:B | Fri:B",
+        "assign": {
+          "Mon": "A",
+          "Tue": "A",
+          "Wed": "C",
+          "Thu": "B",
+          "Fri": "B"
+        },
+        "one_hop": 3,
+        "two_hop": 2,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.4
+      },
+      {
+        "sched": "Mon:A | Tue:C | Wed:C | Thu:B | Fri:B",
+        "assign": {
+          "Mon": "A",
+          "Tue": "C",
+          "Wed": "C",
+          "Thu": "B",
+          "Fri": "B"
+        },
+        "one_hop": 3,
+        "two_hop": 2,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.4
+      },
+      {
+        "sched": "Mon:B | Tue:A | Wed:A | Thu:B | Fri:D",
+        "assign": {
+          "Mon": "B",
+          "Tue": "A",
+          "Wed": "A",
+          "Thu": "B",
+          "Fri": "D"
+        },
+        "one_hop": 3,
+        "two_hop": 2,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.4
+      },
+      {
+        "sched": "Mon:B | Tue:A | Wed:A | Thu:C | Fri:B",
+        "assign": {
+          "Mon": "B",
+          "Tue": "A",
+          "Wed": "A",
+          "Thu": "C",
+          "Fri": "B"
+        },
+        "one_hop": 3,
+        "two_hop": 2,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.4
+      },
+      {
+        "sched": "Mon:B | Tue:C | Wed:A | Thu:C | Fri:B",
+        "assign": {
+          "Mon": "B",
+          "Tue": "C",
+          "Wed": "A",
+          "Thu": "C",
+          "Fri": "B"
+        },
+        "one_hop": 3,
+        "two_hop": 2,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.4
+      },
+      {
+        "sched": "Mon:B | Tue:C | Wed:C | Thu:B | Fri:D",
+        "assign": {
+          "Mon": "B",
+          "Tue": "C",
+          "Wed": "C",
+          "Thu": "B",
+          "Fri": "D"
+        },
+        "one_hop": 3,
+        "two_hop": 2,
+        "recoverable": 5,
+        "total": 5,
+        "avg": 1.4
+      }
+    ],
+    "best": {
+      "Mon": "A",
+      "Tue": "C",
+      "Wed": "A",
+      "Thu": "B",
+      "Fri": "D"
+    },
+    "contingency": [
+      {
+        "emp": "A",
+        "day": "Mon",
+        "scheduled": true,
+        "type": "1-Hop (直接找有空檔且未滿額同仁代班)",
+        "dist": 1,
+        "steps": [
+          "Mon: A -> B"
+        ],
+        "new": "Mon:B | Tue:C | Wed:A | Thu:B | Fri:D"
+      },
+      {
+        "emp": "A",
+        "day": "Tue",
+        "scheduled": false,
+        "type": "0-Hop (原班表未排該員，無須異動)",
+        "dist": 0,
+        "steps": [
+          "Tue 原定由 C 值班（非 A），維持原班表不變。"
+        ],
+        "new": "Mon:A | Tue:C | Wed:A | Thu:B | Fri:D"
+      },
+      {
+        "emp": "A",
+        "day": "Wed",
+        "scheduled": true,
+        "type": "1-Hop (直接找有空檔且未滿額同仁代班)",
+        "dist": 1,
+        "steps": [
+          "Wed: A -> C"
+        ],
+        "new": "Mon:A | Tue:C | Wed:C | Thu:B | Fri:D"
+      },
+      {
+        "emp": "B",
+        "day": "Mon",
+        "scheduled": false,
+        "type": "0-Hop (原班表未排該員，無須異動)",
+        "dist": 0,
+        "steps": [
+          "Mon 原定由 A 值班（非 B），維持原班表不變。"
+        ],
+        "new": "Mon:A | Tue:C | Wed:A | Thu:B | Fri:D"
+      },
+      {
+        "emp": "B",
+        "day": "Thu",
+        "scheduled": true,
+        "type": "1-Hop (直接找有空檔且未滿額同仁代班)",
+        "dist": 1,
+        "steps": [
+          "Thu: B -> C"
+        ],
+        "new": "Mon:A | Tue:C | Wed:A | Thu:C | Fri:D"
+      },
+      {
+        "emp": "B",
+        "day": "Fri",
+        "scheduled": false,
+        "type": "0-Hop (原班表未排該員，無須異動)",
+        "dist": 0,
+        "steps": [
+          "Fri 原定由 D 值班（非 B），維持原班表不變。"
+        ],
+        "new": "Mon:A | Tue:C | Wed:A | Thu:B | Fri:D"
+      },
+      {
+        "emp": "C",
+        "day": "Tue",
+        "scheduled": true,
+        "type": "1-Hop (直接找有空檔且未滿額同仁代班)",
+        "dist": 1,
+        "steps": [
+          "Tue: C -> D"
+        ],
+        "new": "Mon:A | Tue:D | Wed:A | Thu:B | Fri:D"
+      },
+      {
+        "emp": "C",
+        "day": "Wed",
+        "scheduled": false,
+        "type": "0-Hop (原班表未排該員，無須異動)",
+        "dist": 0,
+        "steps": [
+          "Wed 原定由 A 值班（非 C），維持原班表不變。"
+        ],
+        "new": "Mon:A | Tue:C | Wed:A | Thu:B | Fri:D"
+      },
+      {
+        "emp": "C",
+        "day": "Thu",
+        "scheduled": false,
+        "type": "0-Hop (原班表未排該員，無須異動)",
+        "dist": 0,
+        "steps": [
+          "Thu 原定由 B 值班（非 C），維持原班表不變。"
+        ],
+        "new": "Mon:A | Tue:C | Wed:A | Thu:B | Fri:D"
+      },
+      {
+        "emp": "D",
+        "day": "Tue",
+        "scheduled": false,
+        "type": "0-Hop (原班表未排該員，無須異動)",
+        "dist": 0,
+        "steps": [
+          "Tue 原定由 C 值班（非 D），維持原班表不變。"
+        ],
+        "new": "Mon:A | Tue:C | Wed:A | Thu:B | Fri:D"
+      },
+      {
+        "emp": "D",
+        "day": "Fri",
+        "scheduled": true,
+        "type": "1-Hop (直接找有空檔且未滿額同仁代班)",
+        "dist": 1,
+        "steps": [
+          "Fri: D -> B"
+        ],
+        "new": "Mon:A | Tue:C | Wed:A | Thu:B | Fri:B"
+      }
+    ],
+    "native": {
+      "one_ns": 20.18,
+      "all_ns": 116.43,
+      "repair_ns": 86.73
+    }
+  },
+  "q2": {
+    "source": "本次建置時即時執行 build/benchmark_malloc.exe（MSVC /O2）",
+    "scenarios": [
+      {
+        "name": "場景 1：單一 40KB 反覆配置/釋放",
+        "ops": 1000000,
+        "std": 103.94,
+        "my": 4.21
+      },
+      {
+        "name": "場景 2：批次 64 個 40KB × 10,000 輪",
+        "ops": 640000,
+        "std": 126.13,
+        "my": 3.53
+      },
+      {
+        "name": "場景 3：128B~4KB 混合大小",
+        "ops": 500000,
+        "std": 18.29,
+        "my": 3.76
+      }
+    ],
+    "slab_hits": 1640000,
+    "arena_hits": 500000,
+    "fallback_hits": 0
+  },
+  "q3": {
+    "width": 575,
+    "height": 313,
+    "grid": [
+      [
+        "R",
+        "Y",
+        "G",
+        "B",
+        "Y"
+      ],
+      [
+        "G",
+        "B",
+        "Y",
+        "R",
+        "G"
+      ],
+      [
+        "B",
+        "R",
+        "B",
+        "G",
+        "B"
+      ],
+      [
+        "G",
+        "Y",
+        "R",
+        "Y",
+        "R"
+      ],
+      [
+        "R",
+        "G",
+        "B",
+        "G",
+        "B"
+      ],
+      [
+        "G",
+        "B",
+        "Y",
+        "R",
+        "Y"
+      ],
+      [
+        "Y",
+        "R",
+        "G",
+        "Y",
+        "G"
+      ],
+      [
+        "B",
+        "G",
+        "B",
+        "R",
+        "B"
+      ],
+      [
+        "Y",
+        "R",
+        "G",
+        "B",
+        "G"
+      ]
+    ],
+    "palette": {
+      "R": "#FF0000",
+      "Y": "#FFC000",
+      "G": "#70AD47",
+      "B": "#0070C0"
+    },
+    "counts": {
+      "R": 10,
+      "Y": 10,
+      "G": 13,
+      "B": 12
+    },
+    "entropy": 1.9904346909466677,
+    "row_counts": [
+      {
+        "R": 1,
+        "Y": 2,
+        "G": 1,
+        "B": 1
+      },
+      {
+        "G": 2,
+        "B": 1,
+        "Y": 1,
+        "R": 1
+      },
+      {
+        "B": 3,
+        "R": 1,
+        "G": 1
+      },
+      {
+        "G": 1,
+        "Y": 2,
+        "R": 2
+      },
+      {
+        "R": 1,
+        "G": 2,
+        "B": 2
+      },
+      {
+        "G": 1,
+        "B": 1,
+        "Y": 2,
+        "R": 1
+      },
+      {
+        "Y": 2,
+        "R": 1,
+        "G": 2
+      },
+      {
+        "B": 3,
+        "G": 1,
+        "R": 1
+      },
+      {
+        "Y": 1,
+        "R": 1,
+        "G": 2,
+        "B": 1
+      }
+    ],
+    "col_counts": [
+      {
+        "R": 2,
+        "G": 3,
+        "B": 2,
+        "Y": 2
+      },
+      {
+        "Y": 2,
+        "B": 2,
+        "R": 3,
+        "G": 2
+      },
+      {
+        "G": 3,
+        "Y": 2,
+        "B": 3,
+        "R": 1
+      },
+      {
+        "B": 2,
+        "R": 3,
+        "G": 2,
+        "Y": 2
+      },
+      {
+        "Y": 2,
+        "G": 3,
+        "B": 3,
+        "R": 1
+      }
+    ],
+    "h_edges": 36,
+    "v_edges": 40,
+    "conflicts": 0,
+    "even": {
+      "R": 5,
+      "G": 6,
+      "Y": 5,
+      "B": 7
+    },
+    "odd": {
+      "Y": 5,
+      "B": 5,
+      "G": 7,
+      "R": 5
+    },
+    "sym_rows": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "h_pairs": {
+      "RY": 9,
+      "GY": 4,
+      "BG": 12,
+      "BY": 3,
+      "GR": 4,
+      "BR": 4
+    },
+    "v_pairs": {
+      "GR": 7,
+      "BY": 6,
+      "GY": 8,
+      "BR": 8,
+      "BG": 8,
+      "RY": 3
+    },
+    "h_within": 0.5833333333333334,
+    "v_within": 0.275,
+    "near_pairs": [
+      [
+        1,
+        5,
+        1
+      ],
+      [
+        2,
+        4,
+        2
+      ],
+      [
+        2,
+        7,
+        2
+      ],
+      [
+        4,
+        7,
+        2
+      ],
+      [
+        6,
+        8,
+        1
+      ]
+    ],
+    "mc_trials": 50000,
+    "mc_zero": 0,
+    "mc_min": 4,
+    "mc_avg": 17.96186,
+    "theory_p": 3.1963624332094414e-10,
+    "mirror_p": 0.00045724737082761756,
+    "chi2": 7.3894886363636365,
+    "h_ry": 0.25,
+    "v_ry": 0.075,
+    "row_patterns": 324,
+    "sym_patterns": 108,
+    "roster_day": true,
+    "roster_week": true,
+    "pred_rows": [
+      [
+        [
+          "R",
+          "G",
+          "B",
+          "G",
+          "B"
+        ],
+        1.9611
+      ],
+      [
+        [
+          "G",
+          "B",
+          "Y",
+          "R",
+          "Y"
+        ],
+        1.9167
+      ],
+      [
+        [
+          "B",
+          "G",
+          "Y",
+          "R",
+          "Y"
+        ],
+        1.8694
+      ]
+    ],
+    "hist": {
+      "4": 1,
+      "5": 3,
+      "6": 16,
+      "7": 46,
+      "8": 94,
+      "9": 210,
+      "10": 442,
+      "11": 877,
+      "12": 1416,
+      "13": 2213,
+      "14": 3193,
+      "15": 4226,
+      "16": 4815,
+      "17": 5254,
+      "18": 5524,
+      "19": 5199,
+      "20": 4485,
+      "21": 3697,
+      "22": 2858,
+      "23": 2072,
+      "24": 1425,
+      "25": 868,
+      "26": 517,
+      "27": 277,
+      "28": 153,
+      "29": 69,
+      "30": 26,
+      "31": 10,
+      "32": 8,
+      "33": 2,
+      "34": 4
+    },
+    "ham": [
+      [
+        0,
+        5,
+        5,
+        4,
+        4,
+        4,
+        4,
+        5,
+        3
+      ],
+      [
+        5,
+        0,
+        5,
+        4,
+        5,
+        1,
+        4,
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        5,
+        2,
+        5,
+        4,
+        2,
+        4
+      ],
+      [
+        4,
+        4,
+        5,
+        0,
+        5,
+        4,
+        4,
+        5,
+        5
+      ],
+      [
+        4,
+        5,
+        2,
+        5,
+        0,
+        5,
+        5,
+        2,
+        5
+      ],
+      [
+        4,
+        1,
+        5,
+        4,
+        5,
+        0,
+        5,
+        4,
+        5
+      ],
+      [
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        0,
+        5,
+        1
+      ],
+      [
+        5,
+        4,
+        2,
+        5,
+        2,
+        4,
+        5,
+        0,
+        5
+      ],
+      [
+        3,
+        4,
+        4,
+        5,
+        5,
+        5,
+        1,
+        5,
+        0
+      ]
+    ],
+    "native": {
+      "trials": 1000000,
+      "total_ms": 104.06,
+      "per_50k_ms": 5.2,
+      "min_conf": 3
+    }
+  }
+}
