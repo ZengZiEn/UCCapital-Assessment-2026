@@ -1,10 +1,10 @@
-# 題目二：`myMalloc()` 開發、除錯與極致最佳化完整日誌 (`04_dev_log.md`)
+# 題目二：`myMalloc()` 人機協作（Human-AI Agent）開發、除錯與極致最佳化完整日誌 (`04_dev_log.md`)
 
-本文件完整記錄「題目二：C 語言的 `malloc` 效能問題與自訂 `myMalloc()` 實作」從最初效能瓶頸剖析、雙層混合架構設計、MSVC 編譯環境建置、邊界條件除錯，到最終引進 `dlmalloc` / `mattconte/tlsf` 顯式雙向自由串列（Explicit Free-List）的每一個步驟與修改動作。
+本文件完整記錄「題目二：C 語言的 `malloc` 效能問題與自訂 `myMalloc()` 實作」在 **Human-in-the-Loop AI Agent 協同研發模式** 下，由 **曾子恩（人類工程師：負責軟體工程規範制定、強制實機執行驗證、開源效能極限質疑與品質把關）** 與 **AI Agent（負責本機 MSVC 工具鏈探測、GitHub `dlmalloc`/`tlsf` 架構檢索、C11 記憶體池編碼、VirtualFree 分頁邊界診斷與百萬次基準測試執行）** 共同推進的每一個步驟與修改動作。
 
 ---
 
-## 完整時間軸與修改紀錄 (Chronological Action & Change Log)
+## 完整時間軸與人機協作修改紀錄 (Chronological Human-AI Collaboration Log)
 
 ### [2026-11-16 09:15] 步驟 1：考題程式碼與效能痛點分析
 * **執行動作**：解析 `2026 Q4 面試前考題 V1.pptx` 第 3 頁，目標為針對反覆呼叫 `malloc(10000 * sizeof(int))`（`40,000 Bytes`）與 `free()` 的效能低落問題提出改善方案、設計 `myMalloc()` 並實際撰寫 C 程式驗證（+10% 加分）。
@@ -53,3 +53,7 @@
 
 ### [2026-11-16 11:42] 步驟 7：全專案回歸測試流水線驗證與暫存檔清理
 * **執行動作**：透過 `docs_and_tools/run_all_pipeline.bat` 重新編譯並執行 `main_demo.exe`、`test_my_malloc.exe`（5 項單元測試全數通過）與 `benchmark_malloc.exe`（214 萬次分配釋放壓力測試），實測數據自動匯入兩份最終 PDF 報告，並清除 `build/*.obj` 中繼檔以保持目錄整潔。
+
+### [2026-11-16 14:05] 步驟 8：補入 Human-AI Agent 協同分析與工程治理紀錄
+* **人類工程師指令**：明確指示專案文件應誠實、透明地呈現使用 AI Agent 協同進行 GitHub 開源調研、邊界除錯與極致最佳化的真實對話歷程。
+* **修改動作**：同步更新本開發日誌、全域總日誌與雙份 PDF 報告，完整對照記錄人機互動之決策脈絡。

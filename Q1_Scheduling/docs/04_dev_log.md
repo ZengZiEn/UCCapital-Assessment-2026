@@ -1,13 +1,14 @@
-# 題目一：排班問題 — 開發、測試與極致最佳化完整日誌 (`04_dev_log.md`)
+# 題目一：排班問題 — 人機協作（Human-AI Agent）開發、測試與極致最佳化完整日誌 (`04_dev_log.md`)
 
-本文件完整記錄「題目一：員工排班與突發狀況動態應變系統」從最初需求解析、演算法選型、全解空間校正、目錄標準化，到最終跨語言（Python 3.12 + C11 Bitboard/SWAR）極致最佳化的每一個步驟與修改動作。
+本文件完整記錄「題目一：員工排班與突發狀況動態應變系統」在 **Human-in-the-Loop AI Agent 協同研發模式** 下，由 **曾子恩（人類工程師：負責需求定義、軟體工程結構規劃、語言效率質疑與實證把關）** 與 **AI Agent（負責 PPTX 逆向解析、GitHub 開源文獻調研、Python/C11 雙軌編碼與自動化測試執行）** 共同推進的每一個步驟與修改動作。
 
 ---
 
-## 完整時間軸與修改紀錄 (Chronological Action & Change Log)
+## 完整時間軸與人機協作修改紀錄 (Chronological Human-AI Collaboration Log)
 
-### [2026-11-16 09:15] 步驟 1：原始考題 PPTX 解構與需求提取
-* **執行動作**：使用 Python `zipfile` 與 `xml.etree.ElementTree` 直接解析 `2026 Q4 面試前考題 V1.pptx` 內的 `ppt/slides/slide2.xml`。
+### [2026-11-16 09:15] 步驟 1：原始考題 PPTX 解構與需求提取（Human 指令 → Agent 逆向解析）
+* **人類工程師指令**：要求檢查 `2026 Q4 面試前考題 V1.pptx` 並提供完整分析。
+* **AI Agent 執行動作**：使用 Python `zipfile` 與 `xml.etree.ElementTree` 直接解析 `2026 Q4 面試前考題 V1.pptx` 內的 `ppt/slides/slide2.xml`。
 * **提取規格**：
   * 員工 `A (Mon, Tue, Wed)`、`B (Mon, Thu, Fri)`、`C (Tue, Wed, Thu)`、`D (Tue, Fri)`。
   * 三大核心需求：(1) `Mon ~ Fri` 每天必有 1 人上班；(2) 每人每週最多上 2 天且限於有空的日子；(3) 排好班表後，某員工可能臨時說「這週某一天不能上了」，演算法需能動態應變。
@@ -61,3 +62,7 @@
 
 ### [2026-11-16 11:42] 步驟 8：全專案回歸測試流水線驗證與暫存檔清理
 * **執行動作**：透過 `docs_and_tools/run_all_pipeline.bat` 重新執行 C11 `fast_scheduler.exe`、Python `src.main` 與 7 項單元測試，數據同步寫入兩份最終 PDF 報告，並清除所有 `.obj` 與 `__pycache__` 暫存檔。
+
+### [2026-11-16 14:05] 步驟 9：補入 Human-AI Agent 協同分析與工程治理紀錄
+* **人類工程師指令**：明確指示專案文件應誠實、透明地呈現使用 AI Agent 協同分析、調研與實作的真實對話歷程，展現「人類主導架構與品質把關 + AI 賦能極速研發」之工程實踐。
+* **修改動作**：同步更新本開發日誌、全域總日誌與雙份 PDF 報告，完整對照記錄人機互動之決策脈絡。

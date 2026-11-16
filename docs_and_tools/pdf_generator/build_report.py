@@ -615,12 +615,13 @@ def build_html(q1: dict, q2: dict, q3: dict) -> str:
     H.append(f"""
 <div class="cover">
   <h1>UC Capital 優式資本<br>面試前考題 — 最終說明報告</h1>
-  <div class="sub">排班演算法 ・ 高效能記憶體配置器 ・ 圖形規律分析</div>
+  <div class="sub">排班演算法 ・ 高效能記憶體配置器 ・ 圖形規律分析<br><span style="font-size:12pt;color:#1F4E79">Human-in-the-Loop AI Agent 協同研發與 C11/Python 雙軌極致最佳化實踐</span></div>
   <div class="meta">
-    題目一：員工排班與突發應變（Python）<br>
+    題目一：員工排班與突發應變（Python 3.12 + C11 Bitboard/SWAR 雙軌引擎）<br>
     題目二：C 語言 malloc 效能問題與 myMalloc 實作（C11 / MSVC /O2）<br>
-    題目三：色彩矩陣特徵、趨勢與規則之演算法證明（Python）<br><br>
-    報告內所有數據皆於建置時由程式即時執行取得
+    題目三：色彩矩陣特徵、趨勢與規則之演算法證明（Python 3.12 + C11 無除法蒙地卡羅）<br><br>
+    本專案採用 Human-AI Agent 協同工程模式（人類架構師決策把關 + AI Agent 調研、分析與實證測試）<br>
+    報告內所有數據皆於建置時由程式實機即時執行取得
   </div>
 </div>""")
 
@@ -633,16 +634,15 @@ def build_html(q1: dict, q2: dict, q3: dict) -> str:
 <div class="page-break"></div>
 <h1>目錄與總覽</h1>
 <ol class="toc">
-  <li>執行摘要與跨語言（C11 vs. Python）雙引擎架構策略</li>
+  <li>執行摘要、Human-AI Agent 協同研發與跨語言（C11 vs. Python）雙引擎策略</li>
   <li>題目一：排班問題 — 建模、雙引擎求解、Bitboard/SWAR 奈秒級加速、突發請假修復</li>
   <li>題目二：malloc 效能問題 — 瓶頸分析、O(1) Slab + 顯式自由串列 (TLSF/dlmalloc) 設計、實測 Benchmark</li>
   <li>題目三：分析歸納題 — 影像解碼、六大規律、百萬次 C11 無除法蒙地卡羅與卡方統計證明</li>
-  <li>限制與誠實聲明</li>
+  <li>限制、AI Agent 協同治理與誠實聲明</li>
   <li>附錄：專案結構與重現方式</li>
 </ol>
-<h2>1. 執行摘要與語言選擇策略</h2>
-<p>針對量化與高頻交易（HFT）對<b>極致執行效率</b>與<b>高度可維護性</b>的雙重要求，本專案在題目一與題目三同時提供
-<b>Python 3.12 領域建模引擎</b>（高可讀性、嚴格型別與單元測試）與 <b>C11 原生極速引擎（MSVC x64 /O2）</b>；題目二則完全以 C11 實作並改良為顯式雙向自由串列：</p>
+<h2>1. 執行摘要、AI Agent 協同研發與語言選擇策略</h2>
+<p>呼應優式資本探索「應用 AI 分析能力輔助交易系統與工程化」之方向，本專案採用 <b>Human-in-the-Loop AI Agent 協同研發模式</b>（由人類工程師曾子恩主導五階段 SDLC 架構、強制實機驗證與跨語言效能質疑，協同 AI Agent 進行開源文獻調研、多假說規律分析與自動化測試；完整人機互動脈絡詳見《實作思考與軟體工程流程報告.pdf》）。針對高頻交易對<b>極致執行效率</b>與<b>高度可維護性</b>的雙重要求，題目一與題目三同時提供 <b>Python 3.12 領域建模引擎</b>與 <b>C11 原生極速引擎（MSVC x64 /O2）</b>；題目二則完全以 C11 實作並改良為顯式雙向自由串列：</p>
 {kpis([
     (f"{q1_c['one_ns']:.1f} ns", f"題目一 C11 Bitboard 單解（比 Python 快 {c_speedup_one:.0f}×）"),
     (f"{q1['num_solutions']} 組 / 1-Hop", "題目一完整枚舉與最佳基準班表零換班代班"),
@@ -842,42 +842,38 @@ def build_html(q1: dict, q2: dict, q3: dict) -> str:
     ]))
 
     # ---------------- 限制 ----------------
-    H.append('<div class="page-break"></div><h1>5. 限制與誠實聲明</h1>')
-    H.append(f"""<p>為讓評審清楚了解結論的適用範圍，以下列出本次實作的已知限制：</p>
-<h3>題目一</h3>
+    H.append('<div class="page-break"></div><div style="font-size:9.3pt;line-height:1.42"><h1>5. 限制、AI Agent 協同治理與誠實聲明</h1>')
+    H.append(f"""<p>為讓評審清楚了解本專案之開發方法論與結論適用範圍，以下誠實列出本次實作之 <b>Human-AI Agent 協同研發分工</b>與<b>已知技術限制</b>：</p>
+<h3>AI Agent 協同研發與人類工程師治理（Human-in-the-Loop Governance）</h3>
+<ul>
+<li><b>協同分工透明揭露</b>：本專案使用 AI Agent 輔助進行 PPTX/PNG 底層逆向解析、多假說統計探勘、國內外與 GitHub 開源文獻檢索（<code>Stockfish</code> Bitboard、<code>mattconte/tlsf</code>、Daniel Lemire 無除法洗牌）、Python/C11 雙軌程式碼撰寫與 SVG 向量圖表排版。</li>
+<li><b>人類工程師（曾子恩）主導之關鍵決策與除錯把關</b>：(1) 指定標準五階段軟體工程目錄與模組化設計；(2) 強制規定「每題實機跑過才整理報告」，在實測中校正 Q1 全解空間為 34 組（374 案例）、診斷並修復 Q2 4MB 區塊經 <code>VirtualFree</code> 卸載後二次讀取之邊界問題、消除 Q3 卡方檢定硬編碼常數改為動態計算；(3) 主動質疑單一語言對執行效率之限制，驅動增建 C11 (<code>MSVC /O2</code>) 暫存器級原生引擎；(4) 逐字核對原始考題簡報，補齊 <code>n=50</code> 員工擴展測試與題目三 <code>Row 9</code> 預測器。</li>
+</ul>
+<h3>題目一技術限制</h3>
 <ul>
 <li>C11 Bitboard/SWAR 原生引擎已將單解耗時壓縮至 ~{q1_c['one_ns']:.1f} ns、全枚舉 ~{q1_c['all_ns']:.1f} ns；Python 引擎計時已重複 2,000 次取平均，Dinic 耗時包含建圖，在小規模（4 人 5 天）下比 MRV 慢屬正常，其價值在於大規模擴展時的多項式時間保證。</li>
 <li>「最小變動」是針對單一請假事件、以增廣鏈長度衡量；若同時多人請假或需考慮員工偏好，需改用最小成本流等方法。</li>
 </ul>
-<h3>題目二</h3>
+<h3>題目二技術限制</h3>
 <ul>
 <li>myMalloc 目前為<b>單執行緒</b>設計（未加鎖）；多執行緒環境需加入 thread-local cache（如 tcmalloc 架構）或鎖。</li>
 <li>Tier-2 Arena 已升級為<b>侵入式顯式雙向自由串列（Explicit Doubly-Linked Free-List）</b>，分配時完全跳過已分配區塊且雙向合併為 O(1)；若空閒區塊尺寸高度碎片化，可再加一層依 2 的冪次分箱之二級位元圖索引（完整 TLSF）以保證最壞情況 O(1)。</li>
-<li>場景 1、2 是記憶體池最擅長的「同尺寸、LIFO」工作負載；數據反映的是此情境下的優勢，測試平台為 Windows CRT heap。</li>
-<li>Double-Free 偵測依賴 Header 中的 Magic Number，能攔截池內常駐且尚未被重新配置之區塊的重複釋放。</li>
+<li>場景 1、2 是記憶體池最擅長的「同尺寸、LIFO」工作負載；Double-Free 偵測依賴 Header Magic，能攔截池內常駐區塊的重複釋放。</li>
 </ul>
-<h3>題目三</h3>
+<h3>題目三技術限制</h3>
 <ul>
-<li>C11 蒙地卡羅 1,000,000 次中 0 次命中，依統計三法則（Rule of Three）在 95% 信賴水準下可嚴格推得 p &lt; 3×10<sup>-6</sup>；報告中的 {q3['theory_p']:.1e} 則是以獨立近似估算的理論量級。</li>
-<li>鏡像對稱的 1/2187 假設各列獨立；卡方檢定樣本中相鄰邊並非完全獨立，p 值應視為參考。</li>
-<li>「與題目一同構」是一種合理解讀，用來展示觀察到的結構可以如何應用，並非出題者意圖的證明。</li>
-</ul>""")
+<li>C11 蒙地卡羅 1,000,000 次中 0 次命中，依統計三法則（Rule of Three）在 95% 信賴水準下可嚴格推得 p &lt; 3×10<sup>-6</sup>；報告中的 {q3['theory_p']:.1e} 則是以獨立近似估算的理論量級。鏡像對稱的 1/2187 假設各列獨立；「與題目一同構」為合理解讀與應用展示。</li>
+</ul>
 
-    # ---------------- 附錄 ----------------
-    H.append("<h1>6. 附錄：專案結構與重現方式</h1>")
-    H.append("""<pre>UCCapital/
-├── UCCapital_面試考題_最終說明報告.pdf / FINAL_REPORT.md / DEVELOPMENT_LOG.md / PROJECT_ARCHITECTURE.md
-├── scripts/run_all_pipeline.bat   ← 全專案一鍵自動化驗證與 PDF 報告建置流水線
-├── Q1_Scheduling/        docs/ (01~04)  src/ (Python)  src_native/fast_scheduler.c (C11)  tests/  scripts/  results/
-├── Q2_MemoryAllocator/   docs/ (01~04)  include/my_malloc.h  src/ (my_malloc.c, main_demo.c)  tests/  scripts/  results/
-├── Q3_PatternAnalysis/   docs/ (01~04)  assets/  src/ (Python)  src_native/fast_monte_carlo.c (C11)  tests/  scripts/  results/
-└── report_pdf/build_report.py     ← 本報告產生器（即時執行三題 C11+Python、產生 17 張 SVG 圖表並轉印 PDF）</pre>""")
-    H.append("""<pre># 一鍵執行全專案（含 C11 編譯、Python 單元測試與重產本 PDF）
-cmd.exe /c scripts\\run_all_pipeline.bat
-# 或個別執行各題腳本
-cmd.exe /c Q1_Scheduling\\scripts\\run_all.bat
-cmd.exe /c Q2_MemoryAllocator\\scripts\\build_and_run.bat
-cmd.exe /c Q3_PatternAnalysis\\scripts\\run_all.bat</pre>""")
+<h1>6. 附錄：專案結構與重現方式</h1>
+<pre>UCCapital/
+├── 2026 Q4 面試前考題 V1.pptx / 最終說明報告.pdf (14頁) / 實作思考與軟體工程流程報告.pdf / README.md
+├── Q1_Scheduling/      docs/(01~04)  src/(Python)  src_native/fast_scheduler.c(C11)  tests/  scripts/  results/
+├── Q2_MemoryAllocator/ docs/(01~04)  include/my_malloc.h  src/(my_malloc.c, main_demo.c)  tests/  results/
+├── Q3_PatternAnalysis/ docs/(01~04)  assets/  src/(Python)  src_native/fast_monte_carlo.c(C11)  tests/  results/
+└── docs_and_tools/     FINAL_REPORT.md / WORKFLOW_AND_THOUGHT_PROCESS.md / DEVELOPMENT_LOG.md
+                        PROJECT_ARCHITECTURE.md / run_all_pipeline.bat / pdf_generator/
+# 一鍵執行全專案（含 C11 編譯、Python 18 項單元測試與重產雙份 PDF）： cmd.exe /c docs_and_tools\\run_all_pipeline.bat</pre></div>""")
     H.append("</body></html>")
     return "".join(H)
 
