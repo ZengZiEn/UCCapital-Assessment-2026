@@ -1,18 +1,59 @@
-﻿# Python bytecode & cache
+﻿# ==========================================
+# UC Capital Assessment - Git Ignore Configuration
+# ==========================================
+
+# 1. Python Bytecode & Environments
 __pycache__/
 *.py[cod]
 *.class
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+ENV/
+*.egg-info/
 
-# C/C++ 編譯產物與暫存檔
+# 2. C/C++ 編譯產物、除錯資訊與二進位檔
 *.obj
+*.o
 *.pdb
 *.ilk
-build/
+*.lib
+*.a
+*.dll
+*.so
+*.dylib
 *.exe
+build/
+bin/
+out/
 
-# 郵件附件專用壓縮檔 (不推上 Git)
+# 3. 專案臨時產物與日誌
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+
+# 4. 郵件附件壓縮包 (保留於本地，不重複推上 Git)
 *.zip
+*.tar.gz
+*.7z
 
-# 瀏覽器暫存設定檔
+# 5. IDE 與編輯器設定檔
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 6. 作業系統產生的快取檔案
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 7. 瀏覽器自動化暫存資料夾
 browser_profile/
 chrome_profile/

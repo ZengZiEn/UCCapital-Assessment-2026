@@ -57,6 +57,7 @@ UCCapital/
 └── docs_and_tools/                             # 【整合技術文件、全域開發日誌與 PDF 自動化建置工具】
     ├── FINAL_REPORT.md                         # 三題完整技術總結報告 (Markdown 版)
     ├── WORKFLOW_AND_THOUGHT_PROCESS.md         # 實作思考脈絡與軟體工程流程說明 (Markdown 版)
+    ├── INTERVIEW_QA_PREPARATION.md             # 面試官高頻技術提問、架構攻防與應對寶典
     ├── PROJECT_ARCHITECTURE.md                 # 軟體工程流程規範與低延遲設計哲學
     ├── DEVELOPMENT_LOG.md                      # 全專案完整時間軸開發、除錯與最佳化總日誌
     ├── run_all_pipeline.bat                    # 全專案一鍵自動化驗證與雙 PDF 報告建置流水線
